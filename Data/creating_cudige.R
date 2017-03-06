@@ -1,7 +1,6 @@
 install.packages("gdata")
 library(gdata)
 library(dplyr)
-?read.xls
 
 
 # Reading the data from excel, checking the dimensions and variable names
