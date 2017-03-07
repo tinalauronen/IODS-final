@@ -1,5 +1,7 @@
 # IODS Final assignment
+
 ## Tina Lauronen 6.3.2017
+
 ### tina.lauronen@helsinki.fi
 
 ## Abstract [write this last!]
@@ -19,31 +21,59 @@ The data is coded by eleven coders using ATLAS.ti software. The unit of analysis
 The data has been saved from SPSS to MS Office Excel and then modified in RSudio. Originally the data consisted of 13,161 observations and 373 variables (including several recodings). After selecting variables for these analysis and removing the observations with missing variables the data set includes 6,506 observations and nine variables. The code is available in this [RScript](https://github.com/tinalauronen/IODS-final/blob/master/Data/creating_cudige.R).
 
 
-## [Description of the data and the variables]
+## The variables
 
-The CuDiGe data is collected and coded in addition to investigate cultural hierarchies and valuations and their change in time. The coding system covered some technical issues like the size of the article, but mainly concentrated to the contents like the cultural area or art form discussed in the article. In these analysis we use variables related to the art form, 
-- what does the data relate to
-- what do the variables present
-- what has been done to the data
+The CuDiGe data is collected and coded in addition to investigate cultural hierarchies and valuations and their change in time. The coding system covered some technical issues like the size of the article, but mainly concentrated to the contents like the cultural area or art form discussed in the article. In these analysis the variables (and their values) are the following:
+
+- *Year*
+    - 1960; 1970; 1980; 1990; 2000 and 2010
+- *Newspaper*
+    - ABC/EP; DN; GU; HS; LM and MIL
+- *Art_form* referring to the primary cultural area discussed in the article
+    - Literature; Classical music; Popular music; Film; TV; Theatre; Fine arts and Other
+- *Artist_time* referring to the time horizon of the artist of piece of art discussed in the article
+    - Present; Post WW2; Pre WW2 and Historical
+- *Format* referring to the format of the piece of art
+    - Live; Recording
+- *Aesthetic* referring to the aesthetic dimension: explicit judgements on the good or poor quality of the piece of art treated in the article
+     - Yes/No
+- *Commercial* referring to the commercial dimension: explicit references to money or other economic indicators
+     - Yes/No
+- *Political* referring to the political dimension: explicit references to politics
+     - Yes/No
 
 ```{r, echo=FALSE, message=FALSE}
 library(GGally)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message=FALSE}
 cudige <- read.csv("/Users/tlaurone/GitHub/tinalauronen/IODS-final/Data/cudige.csv")
+cudige$Year <- factor(cudige$Year, levels = c(1960, 1970, 1980, 1990, 2000, 2010), labels = c("1960", "1970", "1980", "1990", "2000", "2010"))
 str(cudige)
 ```
 
-## [Distributions and relationships of the variables]
-- visualizations
+## Descriptive statistics
 
-```{r, echo=FALSE}
-counts <- table(cudige$Newspaper, cudige$Year)
-barplot(counts, main = "Articles by year and newspaper", legend = rownames(counts), beside = TRUE)
+First we take a look at the distribution on the variables. In Figure 1 there are the frequencies of the variables presented in alphabetical order. 
+
+```{r, echo=FALSE, warning=FALSE, fig.cap="**Figure 1:** Distributions of the variables"}
+gather(cudige) %>% ggplot(aes(value)) + geom_bar() + theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 6)) + facet_wrap("key", scales = "free")
 ```
 
-- interpretations
+The amount of articles increases in time, although 2010 there is a slight decrease visible. There are clear differences among the newspapers as well, the smalles *MIL* includes here only a little more than 500 articles while the biggest *HS* includes almost 1,500 articles.
+
+The most common art form is *literature*, followed by *popular* and *classical* music and *film*. The origin of the artist/piece of art is most commonly *domestic* and the time horizon of the artist/piece of art *present*. The pieces of art are more commonly recording than live performances.
+
+Of the dimensional variables the most common is *aesthetic dimension*. There is aesthetic dimension coded in almost 4,000 articles, while *political* is found in less than 2,000 and *commercial* only in 1,000 articles.
+
+The same results are available in the summary table.
+
+```{r, echo=FALSE}
+summary(cudige, maxsum = 8)
+```
 
 ## [Method]
 
