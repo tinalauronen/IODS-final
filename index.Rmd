@@ -8,9 +8,11 @@
 
 ## [Brief description of the study]
 
-This is the final assignment of the course *Introduction to Open Data Science*, University of Helsinki, spring 2017. In this assaignment I use the data of the research project *Cultural Distinctions, Generations and Change*. I am doing my doctoral studies in this project, shortly called [CuDiGE](http://blogs.helsinki.fi/cudige-project/).
+This is the final assignment of the course *Introduction to Open Data Science*, University of Helsinki, spring 2017. In this assaignment I use the data of the research project *Cultural Distinctions, Generations and Change*. I am doing my doctoral studies in this project, shortly called CuDiGE.
 
-In this assignment...
+In this assignment I test a new way to approach the familiar data: I pick several interesting variables and experiment a new method for me, multiple correspondece analysis (MCA). Previously in this project we have been using logistic regression and multinomial logistic regression. The themes we have been working with this far have been related to highbrow and popular culture, established and emerging cultural areas and cultural globalization (the last one being the focus of my dissertation). The publication list is available at the [project web site](http://blogs.helsinki.fi/cudige-project/). This time I mix the themes a little bit and let an unsupervised method test if it finds the same kind of issues we have find. Also I include some less used and somewhat questionable variables (dimensional variables, see the presentation of the variables above) in the analysis just to see how they act with more familiar variables.
+
+The research questions of this assignment are quite wide: First I will try to find dimensions to support our earlier findings related to old and new; highbrow and popular; and domestic and foreign cultural products. Then I wish to find out how our aesthetic, commercial and political dimensions relate to those aspects. As background variables I keep the year and the newspaper in the analysis.
 
 ## The data
 
@@ -19,7 +21,6 @@ The data is collected from the cultural sections of European newspapers from 196
 The data is coded by eleven coders using ATLAS.ti software. The unit of analysis is individual article and the total N = 13,161. The coding system included more than 300 codes that covered 41 variables.
 
 The data has been saved from SPSS to MS Office Excel and then modified in RSudio. Originally the data consisted of 13,161 observations and 373 variables (including several recodings). After selecting variables for these analysis and removing the observations with missing variables the data set includes 6,506 observations and nine variables. The code is available in this [RScript](https://github.com/tinalauronen/IODS-final/blob/master/Data/creating_cudige.R).
-
 
 ## The variables
 
@@ -47,12 +48,14 @@ library(GGally)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
+library(stringr)
+library(corrplot)
+library(FactoMineR)
 ```
 
 ```{r, echo = FALSE, message=FALSE}
 cudige <- read.csv("/Users/tlaurone/GitHub/tinalauronen/IODS-final/Data/cudige.csv")
 cudige$Year <- factor(cudige$Year, levels = c(1960, 1970, 1980, 1990, 2000, 2010), labels = c("1960", "1970", "1980", "1990", "2000", "2010"))
-str(cudige)
 ```
 
 ## Descriptive statistics
@@ -75,9 +78,16 @@ The same results are available in the summary table.
 summary(cudige, maxsum = 8)
 ```
 
-## [Method]
 
-## [Results]
+## Multiple Correspondence Analysis (MCA)
+
+## Results
+
+```{r, echo=FALSE, fig.height=8, fig.width=8}
+mca <- MCA(cudige, graph = FALSE)
+plot(mca, invisible = c("ind"), habillage = "quali")
+```
+
 - summaries, visualizations
 - interpretations
 - validation analysis of the method
