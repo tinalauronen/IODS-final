@@ -1,12 +1,14 @@
 # IODS Final assignment
 
-## Tina Lauronen 6.3.2017
+## Tina Lauronen 
+
+## 7.3.2017
 
 ### tina.lauronen@helsinki.fi
 
 ## Abstract [write this last!]
 
-## [Brief description of the study]
+## Introduction
 
 This is the final assignment of the course *Introduction to Open Data Science*, University of Helsinki, spring 2017. In this assaignment I use the data of the research project *Cultural Distinctions, Generations and Change*. I am doing my doctoral studies in this project, shortly called CuDiGE.
 
@@ -81,12 +83,30 @@ summary(cudige, maxsum = 8)
 
 ## Multiple Correspondence Analysis (MCA)
 
+Multiple correspondence analysis (MCA) is an unsupervised dimension reduction technique. 
+
 ## Results
 
-```{r, echo=FALSE, fig.height=8, fig.width=8}
+MCA analysis is conducted here using all the variables selected to this assignment: the year, the newspaper, the art form, the format of the piece of art, the origin of the artist, the time horizon of the artist, aesthetic dimension, commercial dimension and political dimension.
+
+```{r, echo=FALSE, fig.height=9, fig.width=9, fig.cap="**Figure 2:** MCA analysis with the year, the newspaper, the art form, the format of the piece of art, the origin of the artist, the time horizon of the artist, aesthetic dimension, commercial dimension and political dimension."}
 mca <- MCA(cudige, graph = FALSE)
 plot(mca, invisible = c("ind"), habillage = "quali")
 ```
+
+Dimensions 1 and 2 cover total 14 per cent of varinace in this analysis. It is not much, but it is very common result in this kind of analysis. In this case it is more interesting to see, if there is some kind of pattern visible in Figure 2 - and there is.
+
+Dimension 1 appears to be division between highbrow and popular art forms. On the right side of the y axis (positive values on x axis representing dimension 1) there are classical highbrow art forms: classical music, theatre and fine arts and on the left side of the y axis (negative values on x axis) there are more popular art forms: TV, film, popular music - and literature. As in our previous research, the origin of the artist is linked to this division. Traditional highbrow culture is more often European and emerging popular culture comes more often from USA. The time horizon of the artist appears clear too: highbrow culture is older than popular culture. According to the format of the piece of art, it appears that highbrow culture is more often live performings than recordings.
+
+Considering the year, 1990 appears in the middle of dimension 1 and recent times are on the left side of the y axis. This is understandable in a light of the rise of popular culture. When considering the newspapers there are some differences but rather small on dimension 1: HS appears to write more on traditional highbrow culture (which we know it is true) while DN and especially MIL write more about popular culture.
+
+The dimensional variables are interesting as well, but the results are not as remarkable as with the other kind of variables. The aesthetical dimension is quite in the middle, only slightly more often appearing in the highbrow side of the y axis. Commercial dimension appears more often on the popular side of the y axis, but the difference is not very remarkable there either. Popular culture seems to be more often related to the political dimension than highbrow culture.
+
+All in all there are at least slight differences among all the variables according to dimension 1. The most remarkable differences are the ones between the cultural areas or art forms, and mainly concentrated to the division on highbrow/popular, so it is relevant to interpret the dimension 1 as highbrow/popular dimension.
+
+Dimension 2 is much more difficult to interpret. The biggest values on the dimension (y axis) are related to newspaper MIL, art form TV and no aesthetical dimension. This brings out the question of the comparativity of the Turkish newspaper in European traditional quality newspaper context: we already know that the results from MIL differ from the other newspapers: by the cultural products discussed in MIL being popular, being new, being domestic - and mainly considering TV. This analysis would result totally different if MIL was excluded (and we have been forced to exclude MIL from several studies).
+
+Just to compare the results I create a new dataset without the Turkish newspaper Milliyet. After the same modifying procedures as conduscted the original ones, this second data set consists of 5,977 observations and the same 9 variables. Figure 3 presents the same MCA analysis with this 
 
 - summaries, visualizations
 - interpretations
