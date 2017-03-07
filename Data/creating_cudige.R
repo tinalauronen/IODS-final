@@ -28,6 +28,8 @@ str(cudige_)
 
 # Labeling the values of the variables
 
+cudige_$Year <- factor(cudige_$Year, levels = c(1960, 1970, 1980, 1990, 2000, 2010), labels = c("1960", "1970", "1980", "1990", "2000", "2010"))
+
 cudige_$Newspaper <- factor(cudige_$Newspaper, levels = c(1:6), labels = c("ABC/EP", "DN", "GU", "HS", "LM", "MIL"))
 
 cudige_$Art_form <- factor(cudige_$Art_form, levels = c(1:8), labels = c("Literature", "Popular music", "Classical music", "Film", "TV", "Theatre", "Fine arts", "Other"))
@@ -44,6 +46,8 @@ cudige_$Commercial <- factor(cudige_$Commercial, levels = c(0, 1), labels = c("N
 
 cudige_$Political <- factor(cudige_$Political, levels = c(0, 1), labels = c("No", "Yes"))
 
+str(cudige_)
+summary(cudige_)
 
 # Saving the dataset
 
