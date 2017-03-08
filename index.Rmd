@@ -6,17 +6,23 @@
 
 #### tina.lauronen@helsinki.fi
 
-## Abstract [write this last!]
+## Abstract
+
+This is a small exercise study about validation and hierarchies in cultural sections of European quality newspapers 1960-2010. The data is collected from seven newspapers from different European countries, coded using simple content analysis coding system and converted to a statistically analysable form. 
+
+In this study the data is analysed using multiple correspondence analysis. The variables used in the analysis cover some background information and information considering the content of the articles. Particularly the interest is in the art form discussed in the article and the format, the origin and the time horizon of the cultural product discussed. The aesthetic, commercial and political dimensions found from the articles are covered here as well.
+
+As a result there are divisions of highbrow and popular culture and traditional and new culture found, as expected. Interestingly the aesthetic, commercial and political dimensions are visible too.
 
 ## Introduction
 
-This is the final assignment of the course *Introduction to Open Data Science*, University of Helsinki, spring 2017. In this assaignment I use the data of the research project *Cultural Distinctions, Generations and Change*. I am doing my doctoral studies in this project, shortly called [CuDiGE](http://blogs.helsinki.fi/cudige-project/). The project explores the classifications and valuations of culture and arts in European quality newspapers 1960-2010.
+This is the final assignment of the course *Introduction to Open Data Science*, University of Helsinki, spring 2017. In this assignment I use the data of the research project *Cultural Distinctions, Generations and Change*. I am doing my doctoral studies in this project, shortly called [CuDiGE](http://blogs.helsinki.fi/cudige-project/). The project explores the classifications and valuations of culture and arts in European quality newspapers 1960-2010.
 
 In this assignment I test a new way to approach the familiar data: I pick several interesting variables and use a new method for me, multiple correspondence analysis (MCA). Previously in this project we have been using logistic regression and multinomial logistic regression. The themes we have been working with this far have been related to differences between highbrow and popular culture, established and emerging cultural areas and cultural globalization (the last one being the focus of my dissertation). The publication list is available at the [project web site](http://blogs.helsinki.fi/cudige-project/publications-2/). This time I mix the themes a little bit and let an unsupervised method test if it finds the same kind of issues we have find. Also I include some less used and somewhat questionable variables (dimensional variables, see the presentation of the variables below) in the analysis just to see how they act with more familiar variables.
 
 The aims of this assignment are experimental and quite wide: First I will try to find dimensions to support our earlier findings related to old and new; highbrow and popular; and domestic and foreign cultural products. Then I wish to find out how our aesthetic, commercial and political dimensions relate to those aspects. As background variables I keep the year and the newspaper in the analysis. The research questions are the following:
 
-- What kind of dimensions are found in MCA?
+- What kinds of dimensions are found in MCA?
     - Highbrow vs. popular?
     - Old/traditional vs. new?
     - Domestic vs. foreign?
@@ -28,11 +34,11 @@ The data is collected from the cultural sections of European quality newspapers 
 
 The data is coded by eleven coders using ATLAS.ti software. The unit of analysis is individual article and the total N = 13,161. The coding system included more than 300 codes that covered 41 variables. After the coding there are several background variables added to data and it is converted to SPSS.
 
-Now the data has been converted from SPSS to MS Office Excel and then modified in RSudio. Originally the data consisted of 13,161 observations and 373 variables (including several recodings). After selecting variables for these analysis and removing the observations with missing variables the data set includes 6,506 observations and nine variables. The data wrangling code is available in this [RScript file](https://github.com/tinalauronen/IODS-final/blob/master/Data/creating_cudige.R).
+Now the data has been converted from SPSS to MS Office Excel and then modified in RSudio. Originally the data consisted of 13,161 observations and 373 variables (including several recodings). After selecting variables for these analyses and removing the observations with missing variables the data set includes 6,506 observations and nine variables. The data wrangling code is available in this [RScript file](https://github.com/tinalauronen/IODS-final/blob/master/Data/creating_cudige.R).
 
 ## The variables
 
-The CuDiGe data is collected and coded in addition to investigate cultural hierarchies and valuations and their change in time. The coding system covered some technical issues like the size and illustration of the article, but mainly concentrated to the contents like the cultural area or art form discussed in the article. In these analysis the variables (and their values) are the following:
+The CuDiGe data is collected and coded in addition to investigate cultural hierarchies and valuations and their change in time. The coding system covered some technical issues like the size and illustration of the article, but mainly concentrated to the contents like the cultural area or art form discussed in the article. In these analyses the variables (and their values) are the following:
 
 - **Year**
     - 1960; 1970; 1980; 1990; 2000; 2010
@@ -103,7 +109,7 @@ plot(mca, invisible = c("ind"), habillage = "quali")
 summary(mca, nbelements = Inf, ncp = 2, file = "summary_mca.xls")
 ```
 
-Dimensions 1 and 2 cover total 14.2 per cent of variance in this analysis. It is not much, but it is very common result in this kind of analysis. To interpret the dimensions 1 and 2 it is useful to take a look at to squared correlations between each varibles and the dimensions.
+Dimensions 1 and 2 cover total 14.2 per cent of variance in this analysis. It is not much, but it is very common result in this kind of analysis. To interpret the dimensions 1 and 2 it is useful to take a look at to squared correlations between each variables and the dimensions.
 
 
 | Categorical variables (eta2) | Dim.1 | Dim.2 |
@@ -127,7 +133,7 @@ The dimensional variables are interesting as well, but the results are not as re
 
 All in all there are at least slight differences among all the variables according to dimension 1. The most remarkable differences are the ones between the cultural areas or art forms, and mainly concentrated to the division on highbrow/popular, so it is relevant to interpret the dimension 1 as highbrow/popular dimension.
 
-Dimension 2 is much more difficult to interpret. The most related variables are again the art form, then the newspaper and the aesthetical dimension. The largest values on the dimension (y axis) are related to newspaper MIL, art form TV and no aesthetical dimension. This brings out the question of the comparativity of the Turkish newspaper in European traditional quality newspaper context: we already know that the results from MIL differ from the other newspapers: by the cultural products discussed in MIL being popular, being new, being domestic - and mainly considering TV. This analysis would result totally different if MIL was excluded (and we have been forced to exclude MIL from several studies).
+Dimension 2 is much more difficult to interpret. The most related variables are again the art form, then the newspaper and the aesthetical dimension. The largest values on the dimension (y axis) are related to newspaper MIL, art form TV and no aesthetical dimension. This brings out the question of the comparability of the Turkish newspaper in European traditional quality newspaper context: we already know that the results from MIL differ from the other newspapers: by the cultural products discussed in MIL being popular, being new, being domestic - and mainly considering TV. This analysis would result totally different if MIL was excluded (and we have been forced to exclude MIL from several studies).
 
 ```{r, echo = FALSE, message=FALSE}
 cudige5 <- read.csv("/Users/tlaurone/GitHub/tinalauronen/IODS-final/Data/cudige5.csv")
@@ -135,7 +141,7 @@ cudige5$Year <- factor(cudige5$Year, levels = c(1960, 1970, 1980, 1990, 2000, 20
 ```
 
 
-Just to compare the results I create a new dataset without the Turkish newspaper Milliyet. After the same modifying procedures as conduscted the original ones, this second data set consists of 5,977 observations and the same 9 variables. Figure 3 presents the same MCA analysis with this new data set. The full summary of the MCA is available [here](). From the categories table we can see, that the v.tests for the categories of the variables are again mainly superior to 2, which means that the results are significally different from 0.
+Just to compare the results I create a new dataset without the Turkish newspaper Milliyet. After the same modifying procedures as conducted with the original ones, this second data set consists of 5,977 observations and the same 9 variables. Figure 3 presents the same MCA analysis with this new data set. The full summary of the MCA is available [here](). From the categories table we can see, that the v.tests for the categories of the variables are again mainly superior to 2, which means that the results are significally different from 0.
 
 ```{r, echo=FALSE, fig.height=9, fig.width=9, fig.cap="***Figure 3:** MCA analysis with the year, the newspaper, the art form, the format of the piece of art, the origin of the artist, the time horizon of the artist, aesthetic dimension, commercial dimension and political dimension. Data from 6 newspapers, N = 5,977.*"}
 mca2 <- MCA(cudige5, graph = FALSE)
@@ -164,16 +170,21 @@ Dimension 1 could still be interpreted as division of highbrow/popular. On the o
 
 The second dimension appears problematic again. The art form matters, but not very clearly. Somehow the upper side of x axis (positive values on y axis) could be interpreted as visual art forms and the lower side non-visual (except at least partly film), but I do not find this explanation very strong.
 
-One very interesting feature in dimension 2 is the role of the three dimensional variables: non-aesthetical but commercial and political appear on the upper side of the x axis, and aesthetical but non-commercial and non-political on the lower side of the x axix. 
+One very interesting feature in dimension 2 is the role of the three dimensional variables: non-aesthetical but commercial and political appear on the upper side of the x axis, and aesthetical but non-commercial and non-political on the lower side of the x axis. 
 
 ## Conclusions and discussion
 
-As an exercise this assaignment was really succesful: I managed to handle a real, existing (and large) data with R, I used a method that I was not familiar before, and I found some useful results for our project for further analysis.
+As an exercise this assignment was really successful: I managed to handle a real, existing (and large) data with R, I used a method that I was not familiar before, and I found some useful results for our project for further analysis.
 
 Previously we have been analysing our data mainly using binary or multinomial logistic regression, methods that can be defined as supervised methods. Now the same data has been analysed (in a rather experimental way) covering partly the same variables but by using unsupervised method. Regarding to the research questions of this study, the results were mainly expected.
 
 The role of the Turkish paper Milliyet is difficult in some of the studies, because it differs radically from the other newspapers. Sometimes it is just easier to exclude it and conduct the analyses again, as in this case. On the other hand it had educational value, and when repeating the analysis the effects of one newspaper became visible.
 
+As a main result of these analyses it is possible to say that the dimensions found support our previous results. There are dimensions in the data that reveal divisions between highbrow and popular culture, and old/traditional and new culture. The origin of the cultural product became remarkable mainly with those divisions: domestic and U.S. cultural products are new and popular compared to classical highbrow culture from Europe (and other parts of the world).
+
+On the other hand we have been very careful to use our variables measuring aesthetic, commercial and political dimensions in the articles. These analyses showed that they could be useful as well. Especially it would be interesting to study further the finding considering non-aesthetic but commercial and political dimensions.
+
+Considering the further studies the first step would be to conduct this kind of MCA with variables chosen more carefully. For example all the technical variables were excluded, and many content-related variables as well. 
 
 
 
