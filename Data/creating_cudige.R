@@ -1,3 +1,8 @@
+# IODS final assignment: data wrangling
+
+# 8.3.2017
+# Tina Lauronen
+
 install.packages("gdata")
 library(gdata)
 library(dplyr)
