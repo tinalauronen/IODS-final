@@ -3,6 +3,8 @@
 # 8.3.2017
 # Tina Lauronen
 
+# The data is from an on-going research project
+
 install.packages("gdata")
 library(gdata)
 library(dplyr)
