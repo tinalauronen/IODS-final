@@ -2,9 +2,9 @@
 
 ## Tina Lauronen 
 
-## 7.3.2017
+## 8.3.2017
 
-### tina.lauronen@helsinki.fi
+#### tina.lauronen@helsinki.fi
 
 ## Abstract [write this last!]
 
@@ -143,7 +143,7 @@ plot(mca2, invisible = c("ind"), habillage = "quali")
 summary(mca2, nbelements = Inf, ncp = 2, file = "summary_mca2.xls")
 ```
 
-The dimensions 1 and 2 cover total 14.6 per cent of the variance. Again we take a look at the squared correlations between the variables and the dimensions 1 and 2.
+The dimensions 1 and 2 cover total 14.6 per cent of the variance, which is a little bit more than in the previous model. Again we take a look at the squared correlations between the variables and the dimensions 1 and 2.
 
 | Categorical variables (eta2) | Dim.1 | Dim.2 |
 |:-----------------------------|:------|:------|
