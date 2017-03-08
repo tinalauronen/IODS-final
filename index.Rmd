@@ -1,8 +1,8 @@
 # IODS Final assignment
 
-## Tina Lauronen 
+#### Tina Lauronen 
 
-## 8.3.2017
+#### 8.3.2017
 
 #### tina.lauronen@helsinki.fi
 
@@ -17,9 +17,9 @@ In this assignment I test a new way to approach the familiar data: I pick severa
 The aims of this assignment are experimental and quite wide: First I will try to find dimensions to support our earlier findings related to old and new; highbrow and popular; and domestic and foreign cultural products. Then I wish to find out how our aesthetic, commercial and political dimensions relate to those aspects. As background variables I keep the year and the newspaper in the analysis. The research questions are the following:
 
 - What kind of dimensions are found in MCA?
-  - Highbrow vs. popular?
-  - Old/traditional vs. new?
-  - Domestic vs. foreign?
+    - Highbrow vs. popular?
+    - Old/traditional vs. new?
+    - Domestic vs. foreign?
 - How does aesthetic, commercial and political dimensions of the data appear related to dimensions found in MCA?
 
 ## The data
@@ -95,9 +95,9 @@ Multiple correspondence analysis (MCA) is an unsupervised dimension reduction te
 
 ## Results
 
-MCA analysis is conducted here using all the variables selected to this assignment: the year, the newspaper, the art form, the format of the piece of art, the origin of the artist, the time horizon of the artist, aesthetic dimension, commercial dimension and political dimension. The full summary table of the analysis is available [here]().
+MCA analysis is conducted here using all the variables selected to this assignment: the year, the newspaper, the art form, the format of the piece of art, the origin of the artist, the time horizon of the artist, aesthetic dimension, commercial dimension and political dimension. The full summary table of the analysis is available [here](). From the categories table we can see, that the v.tests for the categories of the variables are mainly superior to 2, which means that the results are significally different from 0.
 
-```{r, echo=FALSE, fig.height=9, fig.width=9, fig.cap="**Figure 2:** MCA analysis with the year, the newspaper, the art form, the format of the piece of art, the origin of the artist, the time horizon of the artist, aesthetic dimension, commercial dimension and political dimension."}
+```{r, echo=FALSE, fig.height=9, fig.width=9, fig.cap="***Figure 2:** MCA analysis with the year, the newspaper, the art form, the format of the piece of art, the origin of the artist, the time horizon of the artist, aesthetic dimension, commercial dimension and political dimension. Data from 7 newspapers, N = 6,506.*"}
 mca <- MCA(cudige, graph = FALSE)
 plot(mca, invisible = c("ind"), habillage = "quali")
 summary(mca, nbelements = Inf, ncp = 2, file = "summary_mca.xls")
@@ -135,9 +135,9 @@ cudige5$Year <- factor(cudige5$Year, levels = c(1960, 1970, 1980, 1990, 2000, 20
 ```
 
 
-Just to compare the results I create a new dataset without the Turkish newspaper Milliyet. After the same modifying procedures as conduscted the original ones, this second data set consists of 5,977 observations and the same 9 variables. Figure 3 presents the same MCA analysis with this new data set. The full summary of the MCA is available [here]().
+Just to compare the results I create a new dataset without the Turkish newspaper Milliyet. After the same modifying procedures as conduscted the original ones, this second data set consists of 5,977 observations and the same 9 variables. Figure 3 presents the same MCA analysis with this new data set. The full summary of the MCA is available [here](). From the categories table we can see, that the v.tests for the categories of the variables are again mainly superior to 2, which means that the results are significally different from 0.
 
-```{r, echo=FALSE, fig.height=9, fig.width=9, fig.cap="**Figure 3:** MCA analysis with the year, the newspaper, the art form, the format of the piece of art, the origin of the artist, the time horizon of the artist, aesthetic dimension, commercial dimension and political dimension."}
+```{r, echo=FALSE, fig.height=9, fig.width=9, fig.cap="***Figure 3:** MCA analysis with the year, the newspaper, the art form, the format of the piece of art, the origin of the artist, the time horizon of the artist, aesthetic dimension, commercial dimension and political dimension. Data from 6 newspapers, N = 5,977.*"}
 mca2 <- MCA(cudige5, graph = FALSE)
 plot(mca2, invisible = c("ind"), habillage = "quali")
 summary(mca2, nbelements = Inf, ncp = 2, file = "summary_mca2.xls")
@@ -158,9 +158,22 @@ The dimensions 1 and 2 cover total 14.6 per cent of the variance, which is a lit
 | Political                    | 0.098 | 0.116 | 
 |                                              |
 
+Again dimension 1 appears to be connected to the art form, the format and the time horizon of the cultural product. In dimension 2 the most powerful variables are the art form, the newspaper and the aesthetic dimension, but they do not have as strong effect as the ones with dimension 1.
 
-- summaries, visualizations
-- interpretations
-- validation analysis of the method
+Dimension 1 could still be interpreted as division of highbrow/popular. On the other hand the time horizon of the cultural product is strongly connected to dimension 1, so it is possible to interpret it as division of traditional/new as well. 
 
-## [Conclusions and discussion]
+The second dimension appears problematic again. The art form matters, but not very clearly. Somehow the upper side of x axis (positive values on y axis) could be interpreted as visual art forms and the lower side non-visual (except at least partly film), but I do not find this explanation very strong.
+
+One very interesting feature in dimension 2 is the role of the three dimensional variables: non-aesthetical but commercial and political appear on the upper side of the x axis, and aesthetical but non-commercial and non-political on the lower side of the x axix. 
+
+## Conclusions and discussion
+
+As an exercise this assaignment was really succesful: I managed to handle a real, existing (and large) data with R, I used a method that I was not familiar before, and I found some useful results for our project for further analysis.
+
+Previously we have been analysing our data mainly using binary or multinomial logistic regression, methods that can be defined as supervised methods. Now the same data has been analysed (in a rather experimental way) covering partly the same variables but by using unsupervised method. Regarding to the research questions of this study, the results were mainly expected.
+
+The role of the Turkish paper Milliyet is difficult in some of the studies, because it differs radically from the other newspapers. Sometimes it is just easier to exclude it and conduct the analyses again, as in this case. On the other hand it had educational value, and when repeating the analysis the effects of one newspaper became visible.
+
+
+
+
